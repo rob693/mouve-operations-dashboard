@@ -93,6 +93,13 @@
     document.getElementById('leads-won-30d').textContent = metrics.leads_won_30d;
     document.getElementById('new-students-month').textContent = metrics.new_students_month;
     document.getElementById('active-students').textContent = metrics.active_students;
+    document.getElementById('retention-rate').textContent = metrics.retention_rate + '%';
+    document.getElementById('retention-detail').textContent =
+      metrics.returning_students + ' of ' + metrics.active_students_prev + ' returned';
+    document.getElementById('churned-students').textContent = metrics.churned_students;
+    document.getElementById('churned-detail').textContent =
+      'from ' + metrics.prev_term;
+    document.getElementById('returning-students').textContent = metrics.returning_students;
     document.getElementById('enrollments').textContent = metrics.enrollments;
     document.getElementById('classes-running').textContent = metrics.classes_running;
 
@@ -142,6 +149,9 @@
       { metric: 'Leads Won (30 days)', value: metrics.leads_won_30d, source: 'GHL Pipeline 1' },
       { metric: 'New Students (Month)', value: metrics.new_students_month, source: 'DSP Export (manual)' },
       { metric: 'Active Students', value: metrics.active_students, source: 'Airtable ENROLLMENTS (unique students, ' + (metrics.prev_term || '') + ': ' + (metrics.active_students_prev || '—') + ', ' + (diff >= 0 ? '+' : '') + diff + ')' },
+      { metric: 'Retention Rate', value: metrics.retention_rate + '%', source: metrics.returning_students + ' of ' + metrics.active_students_prev + ' returned from ' + metrics.prev_term },
+      { metric: 'Churned', value: metrics.churned_students, source: 'Did not return from ' + metrics.prev_term },
+      { metric: 'Returning Students', value: metrics.returning_students, source: 'From ' + metrics.prev_term },
       { metric: 'Enrollments', value: metrics.enrollments, source: 'DSP via Airtable (synced ' + formatUKDateShort(meta.dsp_last_sync) + ')' },
       { metric: 'Classes Running', value: metrics.classes_running, source: 'DSP via Airtable' }
     ];
@@ -177,7 +187,9 @@
           'Leads (7d)',
           'Leads (30d)',
           'New Students',
-          'Active Students',
+          'Active',
+          'Returning',
+          'Churned',
           'Enrollments',
           'Classes'
         ],
@@ -188,6 +200,8 @@
             metrics.leads_won_30d,
             metrics.new_students_month,
             metrics.active_students,
+            metrics.returning_students,
+            metrics.churned_students,
             metrics.enrollments,
             metrics.classes_running
           ],
@@ -196,6 +210,8 @@
             '#60a5fa',
             '#f59e0b',
             '#8b5cf6',
+            '#10b981',
+            '#ef4444',
             '#a78bfa',
             '#7c3aed'
           ],

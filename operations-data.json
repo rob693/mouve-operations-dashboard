@@ -3,11 +3,16 @@
   "metrics": {
     "leads_won_7d": 4,
     "leads_won_30d": 29,
-    "children_enrolled": 512,
-    "classes_running": 46,
-    "lf_members": 41,
-    "lf_trials": 2,
-    "trial_conversion_rate": 0.95
+    "new_students_month": 40,
+    "active_students": 402,
+    "active_students_prev": 354,
+    "prev_term": "Autumn 2025",
+    "retention_rate": 83.1,
+    "returning_students": 294,
+    "churned_students": 60,
+    "dropped_mid_term": 12,
+    "enrollments": 512,
+    "classes_running": 46
   },
   "meta": {
     "dsp_last_sync": "2026-01-25",

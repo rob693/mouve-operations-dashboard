@@ -19,6 +19,9 @@
   --accent-coral: #f59e0b;
   --accent-coral-light: #fffbeb;
 
+  --accent-red: #ef4444;
+  --accent-red-light: #fef2f2;
+
   --stale-bg: #fef2f2;
   --stale-text: #dc2626;
   --stale-border: #fecaca;
@@ -196,6 +199,7 @@ main {
 .kpi-card.accent-purple { border-left-color: var(--accent-purple); }
 .kpi-card.accent-green { border-left-color: var(--accent-green); }
 .kpi-card.accent-coral { border-left-color: var(--accent-coral); }
+.kpi-card.accent-red { border-left-color: var(--accent-red); }
 
 .kpi-label {
   font-size: 13px;
@@ -217,10 +221,17 @@ main {
 .accent-purple .kpi-value { color: var(--accent-purple); }
 .accent-green .kpi-value { color: var(--accent-green); }
 .accent-coral .kpi-value { color: var(--accent-coral); }
+.accent-red .kpi-value { color: var(--accent-red); }
 
 .kpi-source {
   font-size: 11px;
   color: var(--text-muted);
+}
+
+.kpi-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
 }
 
 .kpi-delta {
