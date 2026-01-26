@@ -5,10 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MOUVE Operations Dashboard</title>
   <link rel="stylesheet" href="css/operations.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
 <body>
-  <h1>MOUVE Operations Dashboard</h1>
-  <p>Loading metrics...</p>
+
+  <!-- Stale data warning banner (hidden by default) -->
+  <div id="stale-banner" class="stale-banner" style="display: none;">
+    Data may be stale &mdash; last update: <span id="stale-time"></span>
+  </div>
+
+  <header>
+    <div class="header-content">
+      <h1>MOUVE Operations</h1>
+      <div class="header-meta">
+        <span class="term-badge" id="term-badge">Spring 2026</span>
+      </div>
+    </div>
+    <div class="timestamps">
+      <span id="last-updated">Loading...</span>
+      <span class="sep">&middot;</span>
+      <span id="dsp-sync">DSP sync: &mdash;</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- KPI Cards Grid -->
+    <section class="kpi-grid">
+
+      <!-- Lead Conversions -->
+      <div class="kpi-card accent-blue">
+        <div class="kpi-label">Leads Won (7 days)</div>
+        <div class="kpi-value" id="leads-won-7d">&mdash;</div>
+        <div class="kpi-source">GHL Pipeline 1</div>
+      </div>
+
+      <div class="kpi-card accent-blue">
+        <div class="kpi-label">Leads Won (30 days)</div>
+        <div class="kpi-value" id="leads-won-30d">&mdash;</div>
+        <div class="kpi-source">GHL Pipeline 1</div>
+      </div>
+
+      <!-- Children's Programme -->
+      <div class="kpi-card accent-purple">
+        <div class="kpi-label">Children Enrolled</div>
+        <div class="kpi-value" id="children-enrolled">&mdash;</div>
+        <div class="kpi-source">DSP via Airtable</div>
+      </div>
+
+      <div class="kpi-card accent-purple">
+        <div class="kpi-label">Classes Running</div>
+        <div class="kpi-value" id="classes-running">&mdash;</div>
+        <div class="kpi-source">DSP via Airtable</div>
+      </div>
+
+      <!-- Ladies Fitness -->
+      <div class="kpi-card accent-green">
+        <div class="kpi-label">LF Active Members</div>
+        <div class="kpi-value" id="lf-members">&mdash;</div>
+        <div class="kpi-source">Airtable CONTACTS</div>
+      </div>
+
+      <div class="kpi-card accent-green">
+        <div class="kpi-label">LF Active Trials</div>
+        <div class="kpi-value" id="lf-trials">&mdash;</div>
+        <div class="kpi-source">Airtable CONTACTS</div>
+      </div>
+
+      <div class="kpi-card accent-coral">
+        <div class="kpi-label">LF Trial Conversion</div>
+        <div class="kpi-value" id="trial-conversion">&mdash;</div>
+        <div class="kpi-source">Members / (Members + Trials)</div>
+      </div>
+
+    </section>
+
+    <!-- Chart Section -->
+    <section class="chart-section">
+      <h2>Metrics Overview</h2>
+      <div class="chart-container">
+        <canvas id="metrics-chart"></canvas>
+      </div>
+    </section>
+
+    <!-- Breakdown Table -->
+    <section class="breakdown-section">
+      <h2>Breakdown</h2>
+      <table class="breakdown-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody id="breakdown-body">
+          <tr><td colspan="3">Loading...</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>Updated daily at 06:35 UK time &middot; Data refreshed by n8n</p>
+  </footer>
+
   <script src="js/operations.js"></script>
 </body>
 </html>
