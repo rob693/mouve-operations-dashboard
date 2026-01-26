@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-01-25T00:00:00Z",
+  "generated_at": "2026-01-26T05:10:00Z",
   "metrics": {
-    "leads_won_7d": 0,
-    "leads_won_30d": 0,
-    "children_enrolled": 0,
-    "classes_running": 0,
-    "lf_members": 0,
-    "lf_trials": 0,
-    "trial_conversion_rate": 0
+    "leads_won_7d": 3,
+    "leads_won_30d": 27,
+    "children_enrolled": 512,
+    "classes_running": 46,
+    "lf_members": 43,
+    "lf_trials": 3,
+    "trial_conversion_rate": 0.93
   },
   "meta": {
     "dsp_last_sync": "2026-01-25",
