@@ -9,6 +9,22 @@
 </head>
 <body>
 
+  <!-- Login overlay -->
+  <div id="login-overlay" class="login-overlay">
+    <div class="login-box">
+      <h2>MOUVE Operations</h2>
+      <p>Enter password to continue</p>
+      <form id="login-form" onsubmit="return false;">
+        <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" autofocus>
+        <button type="submit" id="login-btn">Sign In</button>
+        <div id="login-error" class="login-error" style="display: none;">Incorrect password</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard (hidden until login) -->
+  <div id="dashboard" style="display: none;">
+
   <!-- Stale data warning banner (hidden by default) -->
   <div id="stale-banner" class="stale-banner" style="display: none;">
     Data may be stale &mdash; last update: <span id="stale-time"></span>
@@ -108,6 +124,8 @@
   <footer>
     <p>Updated daily at 06:35 UK time &middot; Data refreshed by n8n</p>
   </footer>
+
+  </div><!-- end #dashboard -->
 
   <script src="js/operations.js"></script>
 </body>

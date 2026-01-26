@@ -42,6 +42,77 @@ body {
   min-height: 100vh;
 }
 
+/* Login overlay */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--header-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.login-box {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: var(--shadow-lg);
+}
+
+.login-box h2 {
+  font-size: 20px;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.login-box p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.login-box input[type="password"] {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.login-box input[type="password"]:focus {
+  border-color: var(--accent-purple);
+}
+
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--header-bg);
+  color: var(--header-text);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.login-box button:hover {
+  opacity: 0.9;
+}
+
+.login-error {
+  color: var(--stale-text);
+  font-size: 13px;
+  margin-top: 12px;
+}
+
 /* Stale data warning */
 .stale-banner {
   background: var(--stale-bg);

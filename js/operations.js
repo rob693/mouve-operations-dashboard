@@ -5,8 +5,67 @@
 
   var DATA_URL = 'operations-data.json';
   var STALE_THRESHOLD_MS = 24 * 60 * 60 * 1000; // 24 hours
+  var PASSWORD_HASH = '04e7774bd27a409216d2150432e8f7f160968992251056dd310244b6b41876dd';
+  var AUTH_KEY = 'mouve_ops_auth';
 
-  // Format a date for UK display
+  // --- Auth ---
+
+  function sha256(message) {
+    var encoder = new TextEncoder();
+    var data = encoder.encode(message);
+    return crypto.subtle.digest('SHA-256', data).then(function (buffer) {
+      var arr = Array.from(new Uint8Array(buffer));
+      return arr.map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+    });
+  }
+
+  function isAuthenticated() {
+    return sessionStorage.getItem(AUTH_KEY) === 'true';
+  }
+
+  function showDashboard() {
+    document.getElementById('login-overlay').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadDashboard();
+  }
+
+  function setupAuth() {
+    if (isAuthenticated()) {
+      showDashboard();
+      return;
+    }
+
+    var form = document.getElementById('login-form');
+    var input = document.getElementById('login-password');
+    var errorEl = document.getElementById('login-error');
+    var btn = document.getElementById('login-btn');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var pw = input.value;
+      if (!pw) return;
+
+      btn.textContent = 'Checking...';
+      btn.disabled = true;
+      errorEl.style.display = 'none';
+
+      sha256(pw).then(function (hash) {
+        if (hash === PASSWORD_HASH) {
+          sessionStorage.setItem(AUTH_KEY, 'true');
+          showDashboard();
+        } else {
+          errorEl.style.display = 'block';
+          input.value = '';
+          input.focus();
+          btn.textContent = 'Sign In';
+          btn.disabled = false;
+        }
+      });
+    });
+  }
+
+  // --- Dashboard ---
+
   function formatUKDate(isoString) {
     var d = new Date(isoString);
     var day = d.getDate();
@@ -29,7 +88,6 @@
     return day + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
   }
 
-  // Populate KPI cards
   function populateCards(metrics) {
     document.getElementById('leads-won-7d').textContent = metrics.leads_won_7d;
     document.getElementById('leads-won-30d').textContent = metrics.leads_won_30d;
@@ -41,7 +99,6 @@
       Math.round(metrics.trial_conversion_rate * 100) + '%';
   }
 
-  // Update timestamps
   function updateTimestamps(data) {
     var generatedAt = data.generated_at;
     document.getElementById('last-updated').textContent =
@@ -57,7 +114,6 @@
     }
   }
 
-  // Check for stale data (>24 hours old)
   function checkStaleData(generatedAt) {
     var generated = new Date(generatedAt).getTime();
     var now = Date.now();
@@ -70,7 +126,6 @@
     }
   }
 
-  // Render breakdown table
   function renderBreakdown(metrics, meta) {
     var rows = [
       { metric: 'Leads Won (7 days)', value: metrics.leads_won_7d, source: 'GHL Pipeline 1' },
@@ -102,7 +157,6 @@
     }
   }
 
-  // Render Chart.js bar chart — overview of current metrics
   function renderChart(metrics) {
     var ctx = document.getElementById('metrics-chart');
     if (!ctx || typeof Chart === 'undefined') return;
@@ -171,8 +225,7 @@
     });
   }
 
-  // Fetch and render
-  function init() {
+  function loadDashboard() {
     fetch(DATA_URL)
       .then(function (res) {
         if (!res.ok) throw new Error('Failed to load data (' + res.status + ')');
@@ -191,10 +244,11 @@
       });
   }
 
-  // Run on DOM ready
+  // --- Init ---
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', setupAuth);
   } else {
-    init();
+    setupAuth();
   }
 })();
