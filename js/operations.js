@@ -5,7 +5,7 @@
 
   var DATA_URL = 'operations-data.json';
   var STALE_THRESHOLD_MS = 24 * 60 * 60 * 1000; // 24 hours
-  var PASSWORD_HASH = '04e7774bd27a409216d2150432e8f7f160968992251056dd310244b6b41876dd';
+  var PASSWORD_HASH = '4edbab53bcfeaa0a1d742c51e5e578e82ffaac49deb6490ec15ef53d3b039d44';
   var AUTH_KEY = 'mouve_ops_auth';
 
   // --- Auth ---
