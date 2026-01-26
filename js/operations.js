@@ -91,6 +91,7 @@
   function populateCards(metrics) {
     document.getElementById('leads-won-7d').textContent = metrics.leads_won_7d;
     document.getElementById('leads-won-30d').textContent = metrics.leads_won_30d;
+    document.getElementById('new-students-month').textContent = metrics.new_students_month;
     document.getElementById('children-enrolled').textContent = metrics.children_enrolled;
     document.getElementById('classes-running').textContent = metrics.classes_running;
     document.getElementById('lf-members').textContent = metrics.lf_members;
@@ -130,6 +131,7 @@
     var rows = [
       { metric: 'Leads Won (7 days)', value: metrics.leads_won_7d, source: 'GHL Pipeline 1' },
       { metric: 'Leads Won (30 days)', value: metrics.leads_won_30d, source: 'GHL Pipeline 1' },
+      { metric: 'New Students (Month)', value: metrics.new_students_month, source: 'DSP Export (manual)' },
       { metric: 'Children Enrolled', value: metrics.children_enrolled, source: 'DSP via Airtable (synced ' + formatUKDateShort(meta.dsp_last_sync) + ')' },
       { metric: 'Classes Running', value: metrics.classes_running, source: 'DSP via Airtable' },
       { metric: 'LF Active Members', value: metrics.lf_members, source: 'Airtable CONTACTS' },
@@ -167,6 +169,7 @@
         labels: [
           'Leads (7d)',
           'Leads (30d)',
+          'New Students',
           'Children',
           'Classes',
           'LF Members',
@@ -177,6 +180,7 @@
           data: [
             metrics.leads_won_7d,
             metrics.leads_won_30d,
+            metrics.new_students_month,
             metrics.children_enrolled,
             metrics.classes_running,
             metrics.lf_members,
@@ -185,6 +189,7 @@
           backgroundColor: [
             '#3b82f6',
             '#60a5fa',
+            '#f59e0b',
             '#8b5cf6',
             '#a78bfa',
             '#10b981',
