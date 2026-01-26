@@ -101,6 +101,25 @@
       'from ' + metrics.prev_term;
     document.getElementById('returning-students').textContent = metrics.returning_students;
     document.getElementById('enrollments').textContent = metrics.enrollments;
+
+    // Enrollment vs start of term
+    if (metrics.enrollments_start) {
+      var eDiff = metrics.enrollments - metrics.enrollments_start;
+      var eSign = eDiff >= 0 ? '+' : '';
+      var startEl = document.getElementById('enrollments-vs-start');
+      startEl.textContent = eSign + eDiff + ' vs start of term (' + metrics.enrollments_start + ')';
+      startEl.className = 'kpi-delta ' + (eDiff >= 0 ? 'positive' : 'negative');
+    }
+
+    // Enrollment vs previous term end
+    if (metrics.enrollments_prev_end) {
+      var ePrevDiff = metrics.enrollments - metrics.enrollments_prev_end;
+      var ePrevSign = ePrevDiff >= 0 ? '+' : '';
+      var prevEl = document.getElementById('enrollments-vs-prev');
+      prevEl.textContent = ePrevSign + ePrevDiff + ' vs ' + metrics.prev_term + ' end (' + metrics.enrollments_prev_end + ')';
+      prevEl.className = 'kpi-delta ' + (ePrevDiff >= 0 ? 'positive' : 'negative');
+    }
+
     document.getElementById('classes-running').textContent = metrics.classes_running;
 
     // Term-on-term delta
@@ -152,7 +171,8 @@
       { metric: 'Retention Rate', value: metrics.retention_rate + '%', source: metrics.returning_students + ' of ' + metrics.active_students_prev + ' returned from ' + metrics.prev_term },
       { metric: 'Churned', value: metrics.churned_students, source: 'Did not return from ' + metrics.prev_term },
       { metric: 'Returning Students', value: metrics.returning_students, source: 'From ' + metrics.prev_term },
-      { metric: 'Enrollments', value: metrics.enrollments, source: 'DSP via Airtable (synced ' + formatUKDateShort(meta.dsp_last_sync) + ')' },
+      { metric: 'Enrollments (Current)', value: metrics.enrollments, source: 'Airtable ENROLLMENTS (' + (metrics.enrollments_start ? 'started at ' + metrics.enrollments_start + ', ' + (metrics.enrollments - metrics.enrollments_start) + ' dropped' : 'synced ' + formatUKDateShort(meta.dsp_last_sync)) + ')' },
+      { metric: 'Enrollments (Prev Term End)', value: metrics.enrollments_prev_end || '\u2014', source: metrics.prev_term + ' final count' },
       { metric: 'Classes Running', value: metrics.classes_running, source: 'DSP via Airtable' }
     ];
 

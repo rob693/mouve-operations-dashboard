@@ -12,6 +12,8 @@
     "churned_students": 60,
     "dropped_mid_term": 12,
     "enrollments": 512,
+    "enrollments_start": 526,
+    "enrollments_prev_end": 532,
     "classes_running": 46
   },
   "meta": {
