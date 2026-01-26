@@ -174,7 +174,7 @@ main {
 /* KPI Cards Grid */
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-bottom: 32px;
 }
@@ -221,6 +221,20 @@ main {
 .kpi-source {
   font-size: 11px;
   color: var(--text-muted);
+}
+
+.kpi-delta {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.kpi-delta.positive {
+  color: var(--accent-green);
+}
+
+.kpi-delta.negative {
+  color: var(--stale-text);
 }
 
 /* Chart Section */
@@ -300,7 +314,7 @@ footer {
 }
 
 /* Responsive: Tablet */
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .kpi-grid {
     grid-template-columns: repeat(2, 1fr);
   }

@@ -4,11 +4,11 @@
     "leads_won_7d": 3,
     "leads_won_30d": 29,
     "new_students_month": 40,
-    "children_enrolled": 512,
-    "classes_running": 46,
-    "lf_members": 43,
-    "lf_trials": 3,
-    "trial_conversion_rate": 0.93
+    "active_students": 402,
+    "active_students_prev": 354,
+    "prev_term": "Autumn 2025",
+    "enrollments": 512,
+    "classes_running": 46
   },
   "meta": {
     "dsp_last_sync": "2026-01-25",

@@ -92,12 +92,20 @@
     document.getElementById('leads-won-7d').textContent = metrics.leads_won_7d;
     document.getElementById('leads-won-30d').textContent = metrics.leads_won_30d;
     document.getElementById('new-students-month').textContent = metrics.new_students_month;
-    document.getElementById('children-enrolled').textContent = metrics.children_enrolled;
+    document.getElementById('active-students').textContent = metrics.active_students;
+    document.getElementById('enrollments').textContent = metrics.enrollments;
     document.getElementById('classes-running').textContent = metrics.classes_running;
-    document.getElementById('lf-members').textContent = metrics.lf_members;
-    document.getElementById('lf-trials').textContent = metrics.lf_trials;
-    document.getElementById('trial-conversion').textContent =
-      Math.round(metrics.trial_conversion_rate * 100) + '%';
+
+    // Term-on-term delta
+    var prev = metrics.active_students_prev;
+    if (prev) {
+      var diff = metrics.active_students - prev;
+      var pct = Math.round((diff / prev) * 100);
+      var sign = diff >= 0 ? '+' : '';
+      var deltaEl = document.getElementById('active-students-delta');
+      deltaEl.textContent = sign + diff + ' vs ' + metrics.prev_term + ' (' + sign + pct + '%)';
+      deltaEl.className = 'kpi-delta ' + (diff >= 0 ? 'positive' : 'negative');
+    }
   }
 
   function updateTimestamps(data) {
@@ -128,15 +136,14 @@
   }
 
   function renderBreakdown(metrics, meta) {
+    var diff = metrics.active_students - (metrics.active_students_prev || 0);
     var rows = [
       { metric: 'Leads Won (7 days)', value: metrics.leads_won_7d, source: 'GHL Pipeline 1' },
       { metric: 'Leads Won (30 days)', value: metrics.leads_won_30d, source: 'GHL Pipeline 1' },
       { metric: 'New Students (Month)', value: metrics.new_students_month, source: 'DSP Export (manual)' },
-      { metric: 'Children Enrolled', value: metrics.children_enrolled, source: 'DSP via Airtable (synced ' + formatUKDateShort(meta.dsp_last_sync) + ')' },
-      { metric: 'Classes Running', value: metrics.classes_running, source: 'DSP via Airtable' },
-      { metric: 'LF Active Members', value: metrics.lf_members, source: 'Airtable CONTACTS' },
-      { metric: 'LF Active Trials', value: metrics.lf_trials, source: 'Airtable CONTACTS' },
-      { metric: 'LF Trial Conversion', value: Math.round(metrics.trial_conversion_rate * 100) + '%', source: 'Calculated: members / (members + trials)' }
+      { metric: 'Active Students', value: metrics.active_students, source: 'Airtable ENROLLMENTS (unique students, ' + (metrics.prev_term || '') + ': ' + (metrics.active_students_prev || '—') + ', ' + (diff >= 0 ? '+' : '') + diff + ')' },
+      { metric: 'Enrollments', value: metrics.enrollments, source: 'DSP via Airtable (synced ' + formatUKDateShort(meta.dsp_last_sync) + ')' },
+      { metric: 'Classes Running', value: metrics.classes_running, source: 'DSP via Airtable' }
     ];
 
     var tbody = document.getElementById('breakdown-body');
@@ -170,10 +177,9 @@
           'Leads (7d)',
           'Leads (30d)',
           'New Students',
-          'Children',
-          'Classes',
-          'LF Members',
-          'LF Trials'
+          'Active Students',
+          'Enrollments',
+          'Classes'
         ],
         datasets: [{
           label: 'Current Count',
@@ -181,10 +187,9 @@
             metrics.leads_won_7d,
             metrics.leads_won_30d,
             metrics.new_students_month,
-            metrics.children_enrolled,
-            metrics.classes_running,
-            metrics.lf_members,
-            metrics.lf_trials
+            metrics.active_students,
+            metrics.enrollments,
+            metrics.classes_running
           ],
           backgroundColor: [
             '#3b82f6',
@@ -192,8 +197,7 @@
             '#f59e0b',
             '#8b5cf6',
             '#a78bfa',
-            '#10b981',
-            '#34d399'
+            '#7c3aed'
           ],
           borderRadius: 6,
           borderSkipped: false
