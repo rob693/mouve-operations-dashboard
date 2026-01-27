@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-01-26T23:45:00.000Z",
+  "generated_at": "2026-01-27T06:35:06.619Z",
   "metrics": {
-    "leads_won_7d": 7,
-    "leads_won_30d": 32,
-    "new_students_month": 46,
+    "leads_won_7d": 8,
+    "leads_won_30d": 35,
+    "new_students_month": 40,
     "active_students": 402,
-    "active_students_prev": 417,
+    "active_students_prev": 406,
     "prev_term": "Autumn 2025",
-    "retention_rate": 85.4,
-    "returning_students": 356,
-    "churned_students": 61,
+    "retention_rate": 72.4,
+    "returning_students": 294,
+    "churned_students": 112,
     "dropped_mid_term": 12,
     "enrollments": 512,
     "enrollments_start": 526,
@@ -17,7 +17,7 @@
     "classes_running": 46
   },
   "meta": {
-    "dsp_last_sync": "2026-01-26",
+    "dsp_last_sync": "2026-01-25",
     "term": "Spring 2026",
     "ghl_pipeline": "Pipeline 1"
   }
