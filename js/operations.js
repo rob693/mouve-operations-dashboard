@@ -270,49 +270,6 @@
     });
   }
 
-  function renderTasks(tasks) {
-    var container = document.getElementById('tasks-list');
-    if (!tasks || tasks.length === 0) {
-      container.innerHTML = '<p class="tasks-empty">No tasks</p>';
-      return;
-    }
-
-    // Sort: blocked first, then pending by due date, then done
-    var order = { blocked: 0, pending: 1, done: 2 };
-    var sorted = tasks.slice().sort(function (a, b) {
-      var oa = order[a.status] !== undefined ? order[a.status] : 1;
-      var ob = order[b.status] !== undefined ? order[b.status] : 1;
-      if (oa !== ob) return oa - ob;
-      return (a.due || '').localeCompare(b.due || '');
-    });
-
-    var today = new Date().toISOString().slice(0, 10);
-    var html = '';
-
-    for (var i = 0; i < sorted.length; i++) {
-      var t = sorted[i];
-      var isDone = t.status === 'done';
-      var isOverdue = t.due && t.due < today && !isDone;
-
-      html += '<div class="task-row' + (isDone ? ' is-done' : '') + '">';
-      html += '<span class="task-status ' + t.status + '"></span>';
-      html += '<span class="task-text">' + escapeHtml(t.text) + '</span>';
-      if (t.due) {
-        html += '<span class="task-due' + (isOverdue ? ' overdue' : '') + '">' + formatUKDateShort(t.due) + '</span>';
-      }
-      html += '<span class="task-badge ' + t.status + '">' + t.status + '</span>';
-      html += '</div>';
-    }
-
-    container.innerHTML = html;
-  }
-
-  function escapeHtml(str) {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  }
-
   function loadDashboard() {
     fetch(DATA_URL)
       .then(function (res) {
@@ -323,7 +280,6 @@
         populateCards(data.metrics);
         updateTimestamps(data);
         checkStaleData(data.generated_at);
-        renderTasks(data.tasks);
         renderBreakdown(data.metrics, data.meta);
         renderChart(data.metrics);
       })
