@@ -20,5 +20,13 @@
     "dsp_last_sync": "2026-01-25",
     "term": "Spring 2026",
     "ghl_pipeline": "Pipeline 1"
-  }
+  },
+  "tasks": [
+    { "text": "Ask StudioHub support to add opportunity_abandoned tag to Abandoned workflow", "due": "2026-01-31", "status": "pending" },
+    { "text": "Add opportunity_abandoned tag check to Follow Ups workflow (blocked by above)", "due": "2026-02-07", "status": "blocked" },
+    { "text": "Check GHL SMS numbers vs January baseline (2,668)", "due": "2026-03-01", "status": "pending" },
+    { "text": "Test ops dashboard on 3 devices (desktop, tablet, phone)", "due": "2026-02-01", "status": "pending" },
+    { "text": "Share dashboard with Louise for preview", "due": "2026-02-01", "status": "pending" },
+    { "text": "Validate £600/term average revenue from Pembee fee data", "due": "2026-02-14", "status": "pending" }
+  ]
 }
