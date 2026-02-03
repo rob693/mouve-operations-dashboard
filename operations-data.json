@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-02-02T06:35:06.974Z",
+  "generated_at": "2026-02-03T06:35:06.993Z",
   "metrics": {
     "leads_won_7d": 9,
-    "leads_won_30d": 38,
+    "leads_won_30d": 44,
     "new_students_month": 40,
-    "active_students": 402,
+    "active_students": 427,
     "active_students_prev": 406,
     "prev_term": "Autumn 2025",
     "retention_rate": 72.4,
     "returning_students": 294,
     "churned_students": 112,
     "dropped_mid_term": 12,
-    "enrollments": 512,
+    "enrollments": 537,
     "enrollments_start": 526,
     "enrollments_prev_end": 532,
     "classes_running": 76
