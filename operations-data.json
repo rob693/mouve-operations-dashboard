@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-02-04T06:35:07.322Z",
+  "generated_at": "2026-02-05T06:35:06.991Z",
   "metrics": {
-    "leads_won_7d": 12,
-    "leads_won_30d": 47,
+    "leads_won_7d": 13,
+    "leads_won_30d": 43,
     "new_students_month": 40,
     "active_students": 427,
     "active_students_prev": 406,
@@ -14,7 +14,7 @@
     "enrollments": 537,
     "enrollments_start": 526,
     "enrollments_prev_end": 532,
-    "classes_running": 77
+    "classes_running": 78
   },
   "meta": {
     "dsp_last_sync": "2026-01-25",
